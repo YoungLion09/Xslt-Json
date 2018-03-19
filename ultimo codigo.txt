@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="ISO-8859-1"?>
+
+<xloco>
+    <usuario nbusuario="profe">
+        <ontologia nbontologia="contador">
+            <ideal nbideal="isan">
+<atributos>
+                    <atributo nbatributo="precio" tipo="decimal"/>
+                    <atributo nbatributo="liminf" tipo="decimal"/>
+                    <atributo nbatributo="limsup" tipo="decimal"/>
+                    <atributo nbatributo="tasa" tipo="decimal"/>
+                    <atributo nbatributo="fija" tipo="decimal"/>
+                    <atributo nbatributo="isan" tipo="decimal"/>
+ </atributos>
+  <metodos>
+                    <metodo nbmetodo="calcuar isan">
+                        <asignacion>
+                            <variable>precio</variable>
+                            <operando>200000</operando>
+                        </asignacion>
+                        <decision>
+                            <condicion> precio menorque75098.87)</condicion>
+                            <verdadero>
+                                <metodo nbmetodo="nivel 1">
+                                    <asignacion>
+                                        <variable>tasa</variable>
+                                        <operando>.02</operando>
+                                    </asignacion>
+                                    <asignacion>
+                                        <variable>fija</variable>
+                                        <operando>0.00</operando>
+                                    </asignacion>
+                                    <asignacion>
+                                        <variable>liminferior</variable>
+                                        <operando>0.01</operando>
+                                    </asignacion>
+                                    <asignacion>
+                                        <variable>limsuperior</variable>
+                                        <operando>75098.87</operando>
+                                    </asignacion>
+                                </metodo>
+                            </verdadero>
+                            <falso> <metodo nbmetodo = "zzzz">
+
+                  <decision>
+                            <condicion> precio menorque90118.61)</condicion>
+                            <verdadero>
+                                <metodo nbmetodo="nivel 2">
+                                    <asignacion>
+                                        <variable>tasa</variable>
+                                        <operando>.05</operando>
+                                    </asignacion>
+                                    <asignacion>
+                                        <variable>fija</variable>
+                                        <operando>1501.96</operando>
+                                    </asignacion>
+                                    <asignacion>
+                                        <variable>liminferior</variable>
+                                        <operando>75098.88</operando>
+                                    </asignacion>
+                                    <asignacion>
+                                        <variable>limsuperior</variable>
+                                        <operando>90118.61</operando>
+                                    </asignacion>
+                                </metodo>
+                            </verdadero>
+                            <falso> <metodo nbmetodo = "xxxx">   
+
+                 <decision>
+                            <condicion> precio menorque105138.43)</condicion>
+                            <verdadero>
+                                <metodo nbmetodo="nivel 3">
+                                    <asignacion>
+                                        <variable>tasa</variable>
+                                        <operando>.10</operando>
+                                    </asignacion>
+                                    <asignacion>
+                                        <variable>fija</variable>
+                                        <operando>2252.97</operando>
+                                    </asignacion>
+                                    <asignacion>
+                                        <variable>liminferior</variable>
+                                        <operando>98118.62</operando>
+                                    </asignacion>
+                                    <asignacion>
+                                        <variable>limsuperior</variable>
+                                        <operando>105138.43</operando>
+                                    </asignacion>
+                                </metodo>
+                            </verdadero>
+     
+                       <falso> <metodo nbmetodo = "yyyy">
+
+                 <decision>
+                            <condicion> precio menorque135117.89)</condicion>
+                            <verdadero>
+                                <metodo nbmetodo="nivel 4">
+                                    <asignacion>
+                                        <variable>tasa</variable>
+                                        <operando>.15</operando>
+                                    </asignacion>
+                                    <asignacion>
+                                        <variable>fija</variable>
+                                        <operando>3754.94</operando>
+                                    </asignacion>
+                                    <asignacion>
+                                        <variable>liminferior</variable>
+                                        <operando>105138.44</operando>
+                                    </asignacion>
+                                    <asignacion>
+                                        <variable>limsuperior</variable>
+                                        <operando>135177.89</operando>
+                                    </asignacion>
+                                </metodo>
+                            </verdadero>
+     
+                       <falso>
+                                <metodo nbmetodo="nivel 5">
+                                    <asignacion>
+                                        <variable>tasa</variable>
+                                        <operando>0.17</operando>
+                                    </asignacion>
+                                    <asignacion>
+                                        <variable>fija</variable>
+                                        <operando>8260.86</operando>
+                                    </asignacion>
+                                    <asignacion>
+                                        <variable>liminferior</variable>
+                                        <operando>135177.90</operando>
+                                    </asignacion>
+                                    <asignacion>
+                                        <variable>limsuperior</variable>
+                                        <operando>135177.89</operando>
+                                    </asignacion>
+                       *             <asignacion>
+                       *                 <variable>limsuperior</variable>
+                       *                 <operando>135177.89</operando>
+                       *             </asignacion>
+                                </metodo>
+                      </falso>
+</decision>
+</metodo>
+</falso>
+</decision>
+</metodo>
+</falso>
+</decision>
+</metodo>
+</falso>
+
+
+</decision>
+</metodo>
+</metodos>
+</ideal>
+</ontologia>
+</usuario>
+</xloco>
+
+
+XSL
+
+
+<?xml version="1.0" encoding="UTF-8"?>
+<xsl:stylesheet version="1.0"
+xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+
+<xsl:template match="//ontologia">
+  <xsl:apply-templates/>
+</xsl:template>
+
+<xsl:template match="ideal">
+   <xsl:apply-templates select="atributos"/>
+  <xsl:apply-templates select="metodos"/>
+</xsl:template>
+
+<xsl:template match="atributos"> 
+  <xsl:apply-templates select="atributo"/>
+</xsl:template>
+
+<xsl:template match="atributo"> 
+"<xsl:value-of select="@nbatributo"/>":
+"<xsl:value-of select="@tipo"/>": <br/>
+</xsl:template>
+
+<xsl:template match="metodos">
+ <xsl:apply-templates select="metodo"/>
+</xsl:template>
+
+<xsl:template match="metodo">
+ <br/> "<xsl:value-of select="@nbmetodo"/>": "function ()  {
+  <xsl:apply-templates select="asignacion"/>
+  <xsl:apply-templates select="decision"/> return <xsl:value-of select="@nbmetodo"/>;}"
+</xsl:template>
+
+<xsl:template match="asignacion">
+  <xsl:value-of select="variable"/>=
+  <xsl:value-of select="operando"/>;<br/>
+</xsl:template>
+
+<xsl:template match="decision">
+  if (<xsl:value-of select="condicion"/>)
+  <xsl:apply-templates select="verdadero"/>
+  <xsl:apply-templates select="falso"/>
+</xsl:template>
+
+<xsl:template match="verdadero">
+  { <br/><xsl:apply-templates select="metodo"/> }
+</xsl:template>
+
+<xsl:template match="falso">
+ else { <xsl:apply-templates select="metodo"/> }
+
+</xsl:template>
+
+</xsl:stylesheet>
